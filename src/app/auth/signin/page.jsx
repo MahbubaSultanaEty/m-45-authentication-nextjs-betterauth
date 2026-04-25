@@ -1,11 +1,13 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
+import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 
-import React from "react";
+import React, { useState } from "react";
 
 const SignInPage = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -63,7 +65,25 @@ const SignInPage = () => {
           }}
         >
           <Label>Password</Label>
-          <Input name="password" placeholder="Enter your password" />
+            <InputGroup>
+        <InputGroup.Input
+          className="w-full max-w-[280px]"
+          type={isVisible ? "text" : "password"}
+                          name="password" 
+                          placeholder="your password"
+        />
+        <InputGroup.Suffix className="pr-0">
+          <Button
+            isIconOnly
+            aria-label={isVisible ? "Hide password" : "Show password"}
+            size="sm"
+            variant="ghost"
+            onPress={() => setIsVisible(!isVisible)}
+          >
+            {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
+          </Button>
+        </InputGroup.Suffix>
+      </InputGroup>
           <Description>
             Must be at least 8 characters with 1 uppercase and 1 number
           </Description>
