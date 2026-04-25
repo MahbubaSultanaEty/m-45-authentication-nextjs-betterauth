@@ -23,11 +23,18 @@ const SignUpPage = () => {
       const {data, error } = await authClient.signUp.email({
           name: userData.name,
           email: userData.email,
-          password : userData.password
+          password: userData.password,
+          callbackURL: '/'
       })
 
       console.log("data response", data, error);
-      
+
+      if (error) {
+        alert("error while signing up" + error.message)
+    }
+      if (data) {
+          alert("Sign up successfull")
+      }
     // const formData = new FormData(e.currentTarget);
     // const data = {};
     // // Convert FormData to plain object

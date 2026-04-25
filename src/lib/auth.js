@@ -4,7 +4,7 @@ import { MongoClient } from "mongodb";
 
 
 const client = new MongoClient(process.env.AUTH_DB_URL);
-const db = client.db();
+const db = client.db('1st-auth');
 
 
 export const auth = betterAuth({
